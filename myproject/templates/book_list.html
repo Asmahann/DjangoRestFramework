@@ -1,0 +1,30 @@
+<!-- templates/book_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+</head>
+<body>
+    <h1>All Books</h1>
+
+    <ul>
+        {% for book in books %}
+            <li>
+                <strong>{{ book.title }}</strong><br>
+                <p>{{ book.description }}</p>
+                <p>Published on: {{ book.published_date }}</p>
+                {% if book.image %}
+                    <img src="{{ book.image.url }}" alt="Book Image" width="100"><br>
+                {% endif %}
+            </li>
+        {% empty %}
+            <p>No books available.</p>
+        {% endfor %}
+    </ul>
+
+    <p><a href="{% url 'create_book' %}">Create a New Book</a></p>
+</body>
+</html>
